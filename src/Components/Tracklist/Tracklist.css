@@ -1,0 +1,13 @@
+.tracklist {
+    list-style-type: none;
+    padding: 0;
+}
+
+.tracklist li {
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.tracklist li:last-child {
+    border-bottom: none;
+}

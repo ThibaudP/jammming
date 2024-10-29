@@ -1,0 +1,27 @@
+.playlist {
+  /* border: 1px solid blue;
+    padding: 3rem 1rem;
+    width: 45%;
+    border-radius: 1rem;
+    background-color: #fff; */
+}
+
+.saveButton {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 40px;
+  cursor: pointer;
+  background-color: #1db954;
+  color: #fff;
+  border: 2px solid #1db954;
+  width: 300px;
+  font-weight: 400;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.saveButton:hover {
+  background-color: #fff;
+  color: #1db954;
+  border: 2px solid #1db954;
+}

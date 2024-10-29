@@ -1,11 +1,13 @@
 import React from 'react';
+import './SearchResults.css';
+import Tracklist from '../Tracklist/Tracklist';
 
 function SearchResults() {
   return (
-  <div id="searchResults">
-    <p>Coucou ceci est SearchResults</p>
-    {/* <Tracklist /> */}
-  </div>
+    <div className="searchResults card">
+      <h2>Results</h2>
+      <Tracklist />
+    </div>
   );
 }
 
