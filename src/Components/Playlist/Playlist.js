@@ -1,13 +1,16 @@
-import React from 'react';
 import './Playlist.css';
 import Tracklist from '../Tracklist/Tracklist';
 
-function Playlist() {
+function Playlist({ playlist, onPlaylistNameUpdate }) {
   return (
     <div className="playlist card">
-      <h2>My Playlist</h2>
-      <Tracklist />
-      <button className='saveButton'>Save to Spotify</button>
+      <input
+        type="text"
+        value={playlist.name}
+        onChange={onPlaylistNameUpdate}
+      ></input>
+      <Tracklist tracklist={playlist.tracklist} />
+      <button className="saveButton">Save to Spotify</button>
     </div>
   );
 }

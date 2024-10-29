@@ -1,25 +1,14 @@
-import React from 'react';
+import './Tracklist.css';
 import Track from '../Track/Track';
 
-function Tracklist() {
-  const trackArray = [
-    {
-      title: 'Track 1',
-    },
-    {
-      title: 'Track 2',
-    },
-    {
-      title: 'Track 3',
-    },
-  ];
-
+function Tracklist({ tracklist, addTrack, removeTrack }) {
   return (
-    <div className="tracklist">
-      {trackArray.map((track, idx) => (
-        <Track key={`trk-${idx}`} title={track.title} />
-      ))}
-    </div>
+    <ul className="tracklist">
+      {tracklist &&
+        tracklist.map((track, idx) => (
+          <Track key={`trk-${idx}`} track={track} />
+        ))}
+    </ul>
   );
 }
 

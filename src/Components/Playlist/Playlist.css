@@ -1,9 +1,11 @@
-.playlist {
-  /* border: 1px solid blue;
-    padding: 3rem 1rem;
-    width: 45%;
-    border-radius: 1rem;
-    background-color: #fff; */
+.playlist input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 1px solid #6f6f6f;
+  font-size: 1.55rem;
+  color: #1db954;
 }
 
 .saveButton {

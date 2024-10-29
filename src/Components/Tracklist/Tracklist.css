@@ -6,6 +6,7 @@
 .tracklist li {
     padding: 5px 0;
     border-bottom: 1px solid #eee;
+    font-weight: 300;
 }
 
 .tracklist li:last-child {

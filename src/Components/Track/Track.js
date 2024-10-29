@@ -1,10 +1,15 @@
-import React from 'react';
+import './Track.css';
 
-function Track(props) {
+function Track({ track }) {
   return (
-    <div className="track">
-      <p>{props.title}</p>
-    </div>
+    <li className="track">
+      <span className="name">{track.name}</span>
+      <br />
+      <span className="info">
+        {track.artist} - {track.album}
+      </span>
+      <div className="track-button">+</div>
+    </li>
   );
 }
 
