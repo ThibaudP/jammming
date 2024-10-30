@@ -2,7 +2,7 @@ import './Playlist.css';
 import { useRef } from 'react';
 import Tracklist from '../Tracklist/Tracklist';
 
-function Playlist({ playlist, onPlaylistNameUpdate, removeTrack }) {
+function Playlist({ playlist, onPlaylistNameUpdate, onPlaylistSend, removeTrack }) {
   const inputRef = useRef(null);
 
   const handleInputClick = () => {
@@ -26,7 +26,7 @@ function Playlist({ playlist, onPlaylistNameUpdate, removeTrack }) {
         isRemove={true}
       />
       {playlist.tracklist.length !== 0 && (
-        <button className="saveButton">Save to Spotify</button>
+        <button className="saveButton" onClick={onPlaylistSend}>Save to Spotify</button>
       )}
     </div>
   );
