@@ -67,7 +67,7 @@ const Spotify = {
 
     try {
       const response = await fetch(
-        `${apiUrl}${endpoint}?q=${encodeURIComponent(query)}&type=track`,
+        `${apiUrl}${endpoint}?q=${encodeURIComponent(query)}&type=track,album,artist`,
         {
           headers,
         },
