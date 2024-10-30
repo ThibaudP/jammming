@@ -16,7 +16,7 @@ function App() {
       name: 'Bohemian Rhapsody',
       artist: 'Queen',
       album: 'A Night at the Opera',
-      id: '1AhDOtG9vPSOmsWgNW0BEY',
+      id: '4u7EnebtmKWzUH433cf5Qv',
     },
     {
       name: 'Hotel California',
@@ -30,18 +30,57 @@ function App() {
       album: 'Nevermind',
       id: '5ghIJDpPoe3CfHMGu71E6T',
     },
+    {
+      name: 'Billie Jean',
+      artist: 'Michael Jackson',
+      album: 'Thriller',
+      id: '3S2R0EVwBSAVMd5UMgKTL0',
+    },
+    {
+      name: 'Stairway to Heaven',
+      artist: 'Led Zeppelin',
+      album: 'Led Zeppelin IV (Remaster)',
+      id: '5CQ30WqJwcep0pYcV4AMNc',
+    },
+    {
+      name: 'Imagine',
+      artist: 'John Lennon',
+      album: 'Imagine',
+      id: '7pKfPomDEeI4TPT6EOYjn9',
+    },
   ];
 
   const [searchResults, setSearchResults] = useState(trackList);
+
   const [playlist, setPlaylist] = useState({
     name: 'New Playlist',
-    tracklist: trackList,
+    tracklist: [],
   });
+
+  const addTrack = (track) => {
+    if (!playlist.tracklist.find((item) => item.id === track.id)) {
+      setPlaylist((oldPlaylist) => ({
+        ...oldPlaylist,
+        tracklist: [...oldPlaylist.tracklist, track],
+      }));
+    }
+  };
+
+  const removeTrack = (track) => {
+    setPlaylist((oldPlaylist) => {
+      return {
+        ...oldPlaylist,
+        tracklist: oldPlaylist.tracklist.filter((item) => item.id !== track.id),
+      };
+    });
+  };
 
   const handlePlaylistNameUpdate = (e) => {
     const newName = e.target.value;
-    setPlaylist((prevPlaylist) => ({...prevPlaylist, name: newName}));
-  }
+    setPlaylist((prevPlaylist) => ({ ...prevPlaylist, name: newName }));
+  };
+
+  // const [playlistUris, setPlaylistUris] = useState([]);
 
   return (
     <StrictMode>
@@ -51,8 +90,12 @@ function App() {
         </h1>
         <SearchBar />
         <div className="results-playlist">
-          <SearchResults searchResults={searchResults} />
-          <Playlist playlist={playlist} onPlaylistNameUpdate={handlePlaylistNameUpdate} />
+          <SearchResults searchResults={searchResults} addTrack={addTrack} />
+          <Playlist
+            playlist={playlist}
+            onPlaylistNameUpdate={handlePlaylistNameUpdate}
+            removeTrack={removeTrack}
+          />
         </div>
       </div>
     </StrictMode>
