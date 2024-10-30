@@ -1,4 +1,5 @@
 import './Track.css';
+import { truncateText } from '../../utils/helpers';
 
 function Track({ track, addTrack, removeTrack, isRemove }) {
   const handleClick = () => {
@@ -11,10 +12,10 @@ function Track({ track, addTrack, removeTrack, isRemove }) {
 
   return (
     <li className="track">
-      <span className="name">{track.name}</span>
+      <span className="name">{truncateText(track.name, 38)}</span>
       <br />
       <span className="info">
-        {track.artist} - {track.album}
+        {truncateText(track.artist, 30)} - {truncateText(track.album, 30)}
       </span>
       <div className="track-button" onClick={handleClick}>
         {isRemove ? '-' : '+'}
