@@ -25,7 +25,12 @@ function Track({ track, addTrack, removeTrack, isRemove }) {
       setTrackPreviewUrl(await Spotify.getTrackPreview(track.id));
     };
     getTrackPreview();
-  }, [track]);
+    if (trackPreviewUrl) {
+      setHasPreview(true);
+    }
+  }, [track, trackPreviewUrl]);
+
+  const [hasPreview, setHasPreview] = useState(false);
 
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -47,17 +52,17 @@ function Track({ track, addTrack, removeTrack, isRemove }) {
 
   return (
     <li className="track">
-      <span className="name">{truncateText(track.name, 38)}</span>
+      <span className="name">{truncateText(track.name, 35)}</span>
       <br />
       <span className="info">
-        {truncateText(track.artist, 30)} - {truncateText(track.album, 30)}
+        {truncateText(`${track.artist} - ${track.album}`, 50)}
       </span>
       <div className="track-button" onClick={handleClick}>
         {isRemove ? '-' : '+'}
       </div>
-      <div className="previewPlayer" onClick={handleAudioPlayback}>
+      {hasPreview && <div className="previewPlayer" onClick={handleAudioPlayback}>
         {isPlaying ? '⏸' : '⏵'}
-      </div>
+      </div>}
       <audio
         ref={audioRef}
         src={trackPreviewUrl}
