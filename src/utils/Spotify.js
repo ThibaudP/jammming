@@ -128,15 +128,12 @@ const Spotify = {
       uris: playlistUris,
     };
 
-    console.log(addTracksBody);
-
     try {
       const response = await fetch(addTracksToPlaylistUrl, {
         headers,
         method: 'POST',
         body: JSON.stringify(addTracksBody),
       });
-      console.log(response);
     } catch (e) {
       console.log('Playlist add tracks error: ', e);
     }
