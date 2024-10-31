@@ -138,6 +138,22 @@ const Spotify = {
       console.log('Playlist add tracks error: ', e);
     }
   },
+
+  async getTrackPreview(trackId) {
+    const headers = { Authorization: `Bearer ${authToken}` };
+    const trackPreviewEndpoint = `/tracks/${trackId}`;
+
+    const trackPreviewUrl = new URL(apiUrl + trackPreviewEndpoint);
+    try {
+      const response = await fetch(trackPreviewUrl, { headers });
+      const jsonResponse = await response.json();
+      const trackPreviewAudioUrl = jsonResponse.preview_url;
+      
+      return trackPreviewAudioUrl;
+    } catch (e) {
+      console.log('Error fetching track preview: ', e);
+    }
+  },
 };
 
 export default Spotify;

@@ -1,5 +1,6 @@
 .track {
   text-align: left;
+  height: 50px;
 }
 
 .name {
@@ -14,9 +15,24 @@
 
 .track-button {
   position: relative;
-  display: block;
+  display: flex;
+  align-items: center;
   float: right;
   font-size: 3rem;
   transform: translateY(-50%);
   cursor: pointer;
+  height: 100%;
+}
+
+.previewPlayer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  float: right;
+  font-size: 3rem;
+  transform: translateY(-50%);
+  cursor: pointer;
+  height: 100%;
+  padding-right: 10px;
+  margin: 0 auto;
 }
