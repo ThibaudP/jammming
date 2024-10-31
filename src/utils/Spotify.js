@@ -59,19 +59,15 @@ const Spotify = {
     window.location = authUrl;
   },
 
-  // async fetchWithAuth(authToken, )
-
   async searchTrack(query) {
     const endpoint = '/search';
     const headers = { Authorization: `Bearer ${authToken}` };
+    const url = new URL(apiUrl + endpoint);
+    url.searchParams.append('q', query);
+    url.searchParams.append('type', 'track,album,artist');
 
     try {
-      const response = await fetch(
-        `${apiUrl}${endpoint}?q=${encodeURIComponent(query)}&type=track,album,artist`,
-        {
-          headers,
-        },
-      );
+      const response = await fetch(url, { headers });
       const jsonResponse = await response.json();
 
       const formattedResponse = jsonResponse.tracks.items.map((track) => {
@@ -85,6 +81,64 @@ const Spotify = {
       return formattedResponse;
     } catch (e) {
       console.log('Search error: ', e);
+    }
+  },
+
+  async getUserId() {
+    const userEndpoint = '/me';
+    const userUrl = new URL(apiUrl + userEndpoint);
+    const headers = { Authorization: `Bearer ${authToken}` };
+
+    try {
+      const response = await fetch(userUrl, { headers });
+      const jsonResponse = await response.json();
+      return jsonResponse.id;
+    } catch (e) {
+      console.log('User ID fetch error: ', e);
+    }
+  },
+
+  async savePlaylist(playlist, playlistUris) {
+    const userId = await this.getUserId();
+    const createPlaylistEndpoint = `/users/${userId}/playlists`;
+    const headers = { Authorization: `Bearer ${authToken}` };
+
+    const createPlaylistUrl = new URL(apiUrl + createPlaylistEndpoint);
+    let playlistId;
+    try {
+      const response = await fetch(createPlaylistUrl, {
+        headers,
+        method: 'POST',
+        body: JSON.stringify({
+          name: playlist.name,
+        }),
+      });
+      const jsonResponse = await response.json();
+      playlistId = jsonResponse.id;
+    } catch (e) {
+      console.log('Playlist create error: ', e);
+    }
+
+    const addTracksToPlaylistEndpoint = `/playlists/${playlistId}/tracks`;
+    const addTracksToPlaylistUrl = new URL(
+      apiUrl + addTracksToPlaylistEndpoint,
+    );
+    const addTracksBody = {
+      playlist_id: playlistId,
+      uris: playlistUris,
+    };
+
+    console.log(addTracksBody);
+
+    try {
+      const response = await fetch(addTracksToPlaylistUrl, {
+        headers,
+        method: 'POST',
+        body: JSON.stringify(addTracksBody),
+      });
+      console.log(response);
+    } catch (e) {
+      console.log('Playlist add tracks error: ', e);
     }
   },
 };

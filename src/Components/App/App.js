@@ -54,7 +54,8 @@ function App() {
 
   const handlePlaylistSend = (e) => {
     e.preventDefault();
-    // send to spotify here
+
+    Spotify.savePlaylist(playlist, playlistUris);
 
     setPlaylist({
       name: 'New Playlist',
