@@ -16,13 +16,16 @@ function Track({ track, addTrack, removeTrack, isRemove }) {
 
   const audioRef = useRef(null);
 
-  const getTrackPreview = async () => {
-    setTrackPreviewUrl(await Spotify.getTrackPreview(track.id));
-  }
-  
+  // const getTrackPreview = async () => {
+  //   setTrackPreviewUrl(await Spotify.getTrackPreview(track.id));
+  // }
+
   useEffect(() => {
+    const getTrackPreview = async () => {
+      setTrackPreviewUrl(await Spotify.getTrackPreview(track.id));
+    };
     getTrackPreview();
-  }, [track])
+  }, [track]);
 
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -34,13 +37,13 @@ function Track({ track, addTrack, removeTrack, isRemove }) {
       audioRef.current?.pause();
       setIsPlaying(false);
     }
-  }
-  
+  };
+
   const handleAudioEnded = (e) => {
     if (isPlaying) {
       setIsPlaying(false);
     }
-  }
+  };
 
   return (
     <li className="track">
@@ -52,8 +55,14 @@ function Track({ track, addTrack, removeTrack, isRemove }) {
       <div className="track-button" onClick={handleClick}>
         {isRemove ? '-' : '+'}
       </div>
-      <div className='previewPlayer' onClick={handleAudioPlayback}>{isPlaying ? '⏸' : '⏵'}</div>
-      <audio ref={audioRef} src={trackPreviewUrl} onEnded={handleAudioEnded}></audio>
+      <div className="previewPlayer" onClick={handleAudioPlayback}>
+        {isPlaying ? '⏸' : '⏵'}
+      </div>
+      <audio
+        ref={audioRef}
+        src={trackPreviewUrl}
+        onEnded={handleAudioEnded}
+      ></audio>
     </li>
   );
 }

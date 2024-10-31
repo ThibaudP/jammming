@@ -135,6 +135,9 @@ const Spotify = {
         method: 'POST',
         body: JSON.stringify(addTracksBody),
       });
+      if (response.ok) {
+        return;
+      }
     } catch (e) {
       console.log('Playlist add tracks error: ', e);
     }

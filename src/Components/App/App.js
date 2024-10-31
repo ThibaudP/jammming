@@ -64,7 +64,7 @@ function App() {
   };
 
   useEffect(() => {
-    const authToken = Spotify.getAccessToken();
+    Spotify.getAccessToken();
   }, []);
 
   return (
