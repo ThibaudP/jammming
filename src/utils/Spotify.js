@@ -1,8 +1,9 @@
 let authToken = '';
 let expiresIn = 0;
-const spotifyClientID = 'b4456a69a2b24b6495a39b18134d1a89';
+const spotifyClientID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
 const apiUrl = 'https://api.spotify.com/v1';
-const redirectUri = 'http://localhost:3000/';
+// const redirectUri = 'http://localhost:3000/';
+const redirectUri = 'https://jammming-tpo.netlify.app';
 const scope = 'playlist-modify-public';
 
 const generateRandomString = (length) => {
